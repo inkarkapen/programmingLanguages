@@ -17,14 +17,14 @@
 </style>
 <body>
 	<table>
-		<c:forEach items = "${languages}" var = "language" varStatus = "loop">
+		<c:forEach items = "${languages}" var = "language">
 		<tr>
 			<td><c:out value = "${language.name}"/></td>
 			<td><c:out value = "${language.creator}"/></td>
 			<td><c:out value = "${language.version}"/></td>
-			<td><a href = "/${loop.index}">Show</a></td>
-			<td><a href = "/delete/${loop.index}">Delete</a></td>
-			<td><a href = "/edit/${loop.index}">Edit</a></td>
+			<td><a href = "/${language.id}">Show</a></td>
+			<td><a href = "/delete/${language.id}">Delete</a></td>
+			<td><a href = "/edit/${language.id}">Edit</a></td>
 		</tr>
 		</c:forEach>
 	</table>

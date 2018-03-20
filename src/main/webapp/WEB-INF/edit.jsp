@@ -9,7 +9,7 @@
 <title>Edit</title>
 </head>
 <body>
-	<form:form modelAttribute = "language" method = "POST" action = "/edit/${index}" >
+	<form:form modelAttribute = "language" method = "POST" action = "/edit/${id}" >
 		<br><form:label path = "name">Name
 		<form:errors path = "name"/>
 		<form:input path = "name"/></form:label>

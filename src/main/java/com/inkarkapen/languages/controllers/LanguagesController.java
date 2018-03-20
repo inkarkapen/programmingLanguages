@@ -28,9 +28,10 @@ public class LanguagesController {
 		model.addAttribute("languages", languages);
 		return "dashboard.jsp";
 	}
-	@RequestMapping("/{index}")
-	public String findLanguage(Model model, @PathVariable("index") int index) {
-		model.addAttribute("language", langService.findOneLang(index));
+	@RequestMapping("/{id}")
+	public String findLanguage(Model model, @PathVariable("id") Long id) {
+		model.addAttribute("language", langService.findOneLang(id));
+		model.addAttribute("id", id);
 		return "showLang.jsp";
 	}
 	
@@ -42,27 +43,27 @@ public class LanguagesController {
 		}
 		return "dashboard.jsp";
 	}
-	@RequestMapping("/delete/{index}")
-	public String delete(@PathVariable("index") int index) {
-		langService.deleteLang(index);
+	@RequestMapping("/delete/{id}")
+	public String delete(@PathVariable("id") Long id) {
+		langService.deleteLang(id);
 		return "redirect:/";
 	}
-	@RequestMapping("/edit/{index}")
-	public String edit(@PathVariable("index") int index, Model model) {
-		Language language = langService.findOneLang(index);
+	@RequestMapping("/edit/{id}")
+	public String edit(@PathVariable("id") Long id, Model model) {
+		Language language = langService.findOneLang(id);
 		if(language != null) {
 			model.addAttribute("language", language);
-			model.addAttribute("index", index);
+			model.addAttribute("id", id);
 			return "edit.jsp";
 		}
 		return "redirect:/";
 	}
-	@PostMapping("/edit/{index}")
-	public String editLang(@PathVariable("index") int index, @Valid @ModelAttribute("language") Language language, BindingResult result) {
+	@PostMapping("/edit/{id}")
+	public String editLang(@Valid @ModelAttribute("language") Language language, BindingResult result, @PathVariable("id") Long id) {
 		if(result.hasErrors()){
 			return "edit.jsp";
 		}
-		langService.updateLang(index, language);
+		langService.updateLang(language);
 		return "redirect:/";
 	}
 }
